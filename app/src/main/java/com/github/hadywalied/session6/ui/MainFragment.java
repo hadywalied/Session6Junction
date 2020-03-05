@@ -17,6 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.github.hadywalied.session6.R;
 import com.github.hadywalied.session6.model.Repos;
@@ -49,7 +50,9 @@ public class MainFragment extends Fragment {
         mViewModel.liveData.observe(getViewLifecycleOwner(), (Observer<List<Repos>>) it -> {
             repos.clear();
             repos.addAll(it);
-            MyAdapter myAdapter = new MyAdapter(repos);
+            MyAdapter myAdapter = new MyAdapter(repos, v -> {
+                Toast.makeText(getActivity(), "Clicked", Toast.LENGTH_SHORT).show();
+            });
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setAdapter(myAdapter);
             swipeRefreshLayout.setRefreshing(false);

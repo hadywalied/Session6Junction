@@ -14,7 +14,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
 
     private Api api = new Api();
 
